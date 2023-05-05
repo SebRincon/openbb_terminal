@@ -65,18 +65,6 @@ class DummyBackend:
         # we inform the user the required packages to install and revert
         # plotly default behaviour to open in browser.
         # We do this only once.
-        if (
-            current_user.preferences.PLOT_ENABLE_PYWRY
-            and get_current_system().LOGGING_SUB_APP != "sdk"
-        ):
-            console.print(pywry_missing)
-            if console.input(
-                "If you prefer to continue without interactive plots/tables, "
-                "press [green]enter[/] or [red]ctrl+c[/] to exit."
-            ):
-                dotenv.set_key(SETTINGS_ENV_FILE, "PLOT_ENABLE_PYWRY", "0")
-
-        current_user.preferences.USE_INTERACTIVE_DF = False
 
     def close(self, reset: bool = False):  # pylint: disable=W0613
         pass
